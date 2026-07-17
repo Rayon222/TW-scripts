@@ -1,22 +1,4 @@
-javascript: (async () => {
-  try {
-    if (document.getElementById("mk111planner")) return;
-    const P = new DOMParser(),
-      get = async (u) =>
-        await fetch(u, { credentials: "same-origin" }).then((r) => {
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          return r.text();
-        }),
-      xml = async (u) => P.parseFromString(await get(u), "text/xml"),
-      cfg = await xml("/interface.php?func=get_config"),
-      ui = await xml("/interface.php?func=get_unit_info"),
-      us = parseFloat(cfg.querySelector("unit_speed")?.textContent || 1),
-      N = {
-        spear: "Kopí",
-        sword: "Meč",
-        axe: "Sekera",
-        archer: "Luk",
-        spy: "Špeh",
+
         light: "Lehká jízda",
         marcher: "Jízdní luk",
         heavy: "Těžká jízda",
